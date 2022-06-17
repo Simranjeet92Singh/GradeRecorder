@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.GradeRecorder" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.GradeRecorder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -12,5 +12,20 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- android:textColorPrimary is the color of the title text in the Toolbar  -->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!-- actionMenuTextColor is the color of the text of action (menu) items  -->
+        <item name="actionMenuTextColor">@android:color/black</item>
+
+
+
+
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">21sp</item>
+        <item name="android:textStyle">italic</item>
     </style>
 </resources>
