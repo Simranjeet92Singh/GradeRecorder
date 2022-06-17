@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.gradeRecorder.graderecorder.recyclerview.CourceList
 
 class MainActivity : AppCompatActivity() {
     private var fragmentManager: FragmentManager?=null
@@ -29,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         fragmentManager=supportFragmentManager
         fragmentTransaction=fragmentManager?.beginTransaction()
 
-        var addcourseFragment:Addcourse = Addcourse()
-        fragmentTransaction?.replace(android.R.id.content, addcourseFragment)?.commit()
+        var courseListFragment = CourceList()
+        fragmentTransaction?.replace(android.R.id.content, courseListFragment)?.commit()
 
 
 
@@ -49,10 +50,12 @@ class MainActivity : AppCompatActivity() {
                fragmentTransaction=fragmentManager?.beginTransaction()
 
                var settings= Settings()
-               fragmentTransaction?.replace(android.R.id.content, settings)?.commit()
+               fragmentTransaction?.replace(android.R.id.content, settings)?.addToBackStack(null)?.commit()
 
            }
        }
         return true
     }
+
+
 }

@@ -19,4 +19,6 @@ class Settings: Fragment() {
 
         return inflater.inflate(R.layout.fragment_about_us, container, false)
     }
+
+
 }
