@@ -10,7 +10,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.gradeRecorder.graderecorder.recyclerview.CourceList
 
 class MainActivity : AppCompatActivity() {
     private var fragmentManager: FragmentManager?=null

@@ -1,4 +1,4 @@
-package com.gradeRecorder.graderecorder.recyclerview
+package com.gradeRecorder.graderecorder
 
 import android.os.Build
 import android.os.Bundle
