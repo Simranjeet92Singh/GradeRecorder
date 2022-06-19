@@ -46,7 +46,7 @@ class Addcourse: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val ac = activity as AppCompatActivity
         ac ?: return
-
+        model=model()
         courseName=view?.findViewById(R.id.CourseName)
         totalGrades=view?.findViewById(R.id.totalGrade)
         obtainGrades=view?.findViewById(R.id.GradesRecieved)
@@ -57,6 +57,7 @@ class Addcourse: Fragment() {
 
 addButton?.setOnClickListener({
     GlobalScope.launch {
+        model?.key=0
         model?.courseName=courseName?.text.toString()
         model?.totalGrades=totalGrades?.text.toString()
         model?.gradesReceived=obtainGrades?.text.toString()
@@ -68,6 +69,7 @@ addButton?.setOnClickListener({
 
     }
 
+    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,CourceList())?.commit()
 
 })
 

@@ -1,5 +1,8 @@
+@file:Suppress("AndroidUnresolvedRoomSqlReference")
+
 package com.gradeRecorder.graderecorder.Database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -9,17 +12,17 @@ import com.gradeRecorder.graderecorder.recyclerview.model
 @Dao
 interface DatabaseDAO {
     @Insert
-    suspend fun addData(model: model?)
+   fun addData(model: model?)
 
     @Query("select * from `model`")
-    suspend fun getAllData():List<model>
+  fun getAllData(): List<model>
 
     @Query("select * from `model` where `key`=:key")
-    suspend fun getData(key:Int):model
+     fun getData(key:Int):model
 
     @Delete
-    suspend fun delete(model: model?)
+    fun delete(model: model?)
 
     @Query("delete from `model`")
-    suspend fun deleteAll()
+     fun deleteAll()
 }
