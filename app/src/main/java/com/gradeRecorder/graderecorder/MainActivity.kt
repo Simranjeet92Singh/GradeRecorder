@@ -8,16 +8,19 @@ import android.view.MenuItem
 import android.view.WindowManager
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 
 class MainActivity : AppCompatActivity() {
-    private var fragmentManager: FragmentManager?=null
-    private var fragmentTransaction: FragmentTransaction?=null
+//    private var fragmentManager: FragmentManager?=null
+//    private var fragmentTransaction: FragmentTransaction?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.grey));
@@ -26,12 +29,13 @@ class MainActivity : AppCompatActivity() {
         val toolbar=findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        fragmentManager=supportFragmentManager
-        fragmentTransaction=fragmentManager?.beginTransaction()
+//        fragmentManager=supportFragmentManager
+//        fragmentTransaction=fragmentManager?.beginTransaction()
 
-        var courseListFragment = CourceList()
-        fragmentTransaction?.replace(android.R.id.content, courseListFragment)?.commit()
 
+//        fragmentTransaction?.replace(R.id.fcontinor, CourceList.newInstance())?.commit()
+
+        supportFragmentManager?.beginTransaction()?.replace(R.id.fcontinor,CourceList())?.commit()
 
 
     }
@@ -45,11 +49,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
        when(item.itemId){
            R.id.settings -> {
-               fragmentManager=supportFragmentManager
-               fragmentTransaction=fragmentManager?.beginTransaction()
 
-               var settings= Settings()
-               fragmentTransaction?.replace(android.R.id.content, settings)?.addToBackStack(null)?.commit()
+               supportFragmentManager.beginTransaction().replace(R.id.fcontinor, Settings())?.addToBackStack(null)?.commit()
 
            }
        }

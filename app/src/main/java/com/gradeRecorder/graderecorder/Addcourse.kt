@@ -23,7 +23,7 @@ class Addcourse: Fragment() {
     private var obtainGrades:EditText?=null
     private var gradeType:EditText?=null
     private var addButton: Button?=null
-    private var backButton:Button?=null
+//    private var backButton:Button?=null
     private var model: model?=null
     private var dataBase: Database?=null
     private var databaseDAO:DatabaseDAO?=null
@@ -52,7 +52,7 @@ class Addcourse: Fragment() {
         obtainGrades=view?.findViewById(R.id.GradesRecieved)
         gradeType=view?.findViewById(R.id.gradeType)
         addButton=view?.findViewById(R.id.buttonNextNewAcivity)
-        backButton=view?.findViewById(R.id.buttonBack)
+//        backButton=view?.findViewById(R.id.buttonBack)
 
 
 addButton?.setOnClickListener({
@@ -69,16 +69,16 @@ addButton?.setOnClickListener({
 
     }
 
-    activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,CourceList())?.commit()
-
+    activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fcontinor,CourceList())?.commit()
+    activity?.supportFragmentManager?.popBackStack()
 })
 
-        backButton?.setOnClickListener({
-            activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,CourceList())?.commit()
-
-
-
-        })
+//        backButton?.setOnClickListener({
+//            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fcontinor,CourceList())?.commit()
+//
+//
+//
+//        })
     }
 
 }

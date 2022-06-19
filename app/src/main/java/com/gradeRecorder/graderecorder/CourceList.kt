@@ -56,7 +56,6 @@ class CourceList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val ac = activity as AppCompatActivity
         ac ?: return
-        model=ArrayList<model>()
         recycler=view?.findViewById(R.id.recycler)
         floatingButton=view?.findViewById<FloatingActionButton>(R.id.ac)
 
@@ -64,7 +63,7 @@ class CourceList : Fragment() {
 
 
 
-           activity?.supportFragmentManager?.beginTransaction()?.replace(android.R.id.content,Addcourse())?.addToBackStack(null)?.commit()
+           activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fcontinor,Addcourse())?.addToBackStack(null)?.commit()
 
         }
 
@@ -76,11 +75,21 @@ class CourceList : Fragment() {
             model = databaseDAO?.getAllData() as ArrayList<model>
 
         }
+
+
         MainScope().launch {
-           val  adapter= Adapter(ac.applicationContext,fragmentManager, model!!)
+            val  adapter= Adapter(ac,fragmentManager, model!!)
+            adapter.notifyDataSetChanged()
             recycler?.adapter=adapter
 
 
+
         }
+    }
+    companion object {
+
+        @JvmStatic
+        fun newInstance() =
+            CourceList()
     }
 }
