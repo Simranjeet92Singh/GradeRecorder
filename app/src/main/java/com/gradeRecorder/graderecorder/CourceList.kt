@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -58,6 +59,8 @@ class CourceList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val ac = activity as AppCompatActivity
         ac ?: return
+
+
         recycler=view?.findViewById(R.id.recycler)
         floatingButton=view?.findViewById<FloatingActionButton>(R.id.ac)
         val firstText=view?.findViewById<TextView>(R.id.frontText)
@@ -68,12 +71,12 @@ class CourceList : Fragment() {
 
 
 
-           activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fcontinor,Addcourse())?.addToBackStack(null)?.commit()
+           activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fcontinor,Addcourse())?.commit()
 
         }
 
        recycler?.layoutManager= LinearLayoutManager(ac.applicationContext)
-        recycler?.setHasFixedSize(true)
+        recycler?.setHasFixedSize(false)
 
         GlobalScope.launch {
             databaseDAO = Database?.getInstance(ac.applicationContext).modelDAO()
