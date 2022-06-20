@@ -20,7 +20,7 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.fragment.app.FragmentContainerView
+    <FrameLayout
         android:id="@+id/fcontinor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
