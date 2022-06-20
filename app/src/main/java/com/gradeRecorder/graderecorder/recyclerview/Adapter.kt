@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.gradeRecorder.graderecorder.CourceList
 import com.gradeRecorder.graderecorder.Database.Database
 import com.gradeRecorder.graderecorder.R
 import kotlinx.coroutines.GlobalScope
@@ -26,10 +28,15 @@ class Adapter (val context:Context,val fragmentManager: FragmentManager?, val li
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
         val model=list.get(position)
-        holder.courseName?.text=model.courseName
-        holder.courseType?.text=model.typeOfGrade
-        holder.totalGrade?.text=model.totalGrades
-        holder.obtGrades?.text=model.gradesReceived
+
+
+            holder.courseName?.text=model.courseName
+            holder.courseType?.text="Type of Grade : ${model.typeOfGrade}"
+            holder.totalGrade?.text="Percentage worth of total grade: ${model.totalGrades}"
+            holder.obtGrades?.text="Grade received: ${model.gradesReceived}"
+
+
+
 
 
         holder.itemView.setOnClickListener {
@@ -47,7 +54,10 @@ class Adapter (val context:Context,val fragmentManager: FragmentManager?, val li
                     GlobalScope.launch {
                         val databaseDAO = Database?.getInstance(context.applicationContext).modelDAO()
 
-                        databaseDAO?.deleteAll()
+                        databaseDAO?.delete(model)
+                        fragmentManager?.beginTransaction()?.replace(R.id.fcontinor,
+                            CourceList()
+                        )?.commit()
 
                     }
                 }

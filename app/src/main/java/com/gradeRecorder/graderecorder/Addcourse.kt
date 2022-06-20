@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -56,21 +57,38 @@ class Addcourse: Fragment() {
 
 
 addButton?.setOnClickListener({
-    GlobalScope.launch {
-        model?.key=0
-        model?.courseName=courseName?.text.toString()
-        model?.totalGrades=totalGrades?.text.toString()
-        model?.gradesReceived=obtainGrades?.text.toString()
-        model?.typeOfGrade=gradeType?.text.toString()
 
-        databaseDAO=Database?.getInstance(ac.applicationContext).modelDAO()
+    if(courseName?.text.toString()==""){
+        Toast.makeText(context,"Course Number is empty.", Toast.LENGTH_SHORT).show()
+    } else if(gradeType?.text.toString()==""){
+        Toast.makeText(context,"Grade Type is empty.", Toast.LENGTH_SHORT).show()
 
-        databaseDAO?.addData(model)
+    }else if(totalGrades?.text.toString()==""){
+        Toast.makeText(context,"Total Grades is empty.", Toast.LENGTH_SHORT).show()
 
+    }else if(obtainGrades?.text.toString()==""){
+        Toast.makeText(context,"Grades Recieved is empty.", Toast.LENGTH_SHORT).show()
+
+    }else {
+
+        GlobalScope.launch {
+
+            model?.key = 0
+            model?.courseName = courseName?.text.toString()
+            model?.totalGrades = totalGrades?.text.toString()
+            model?.gradesReceived = obtainGrades?.text.toString()
+            model?.typeOfGrade = gradeType?.text.toString()
+
+            databaseDAO = Database?.getInstance(ac.applicationContext).modelDAO()
+
+            databaseDAO?.addData(model)
+
+        }
+
+        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fcontinor,CourceList())?.commit()
+        activity?.supportFragmentManager?.popBackStack()
     }
 
-    activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fcontinor,CourceList())?.commit()
-    activity?.supportFragmentManager?.popBackStack()
 })
 
 //        backButton?.setOnClickListener({
