@@ -9,9 +9,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_about_us.xml" value="0.3307291666666667" />
         <entry key="app/src/main/res/layout/fragment_addcource.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/fragment_course_list.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_course_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recycler_item_view.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/recycler_list_view.xml" value="0.46636085626911317" />
+        <entry key="app/src/main/res/layout/recycler_list_view.xml" value="0.1" />
         <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.25" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.144" />
       </map>

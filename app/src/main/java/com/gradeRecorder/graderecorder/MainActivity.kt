@@ -1,16 +1,22 @@
 package com.gradeRecorder.graderecorder
 
+import android.content.DialogInterface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.gradeRecorder.graderecorder.Database.Database
+import com.gradeRecorder.graderecorder.recyclerview.model
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 //    private var fragmentManager: FragmentManager?=null
@@ -51,6 +57,47 @@ class MainActivity : AppCompatActivity() {
            R.id.settings -> {
 
                supportFragmentManager.beginTransaction().replace(R.id.fcontinor, Settings())?.addToBackStack(null)?.commit()
+
+           }
+
+           R.id.deleteAll ->{
+               val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this@MainActivity)
+
+               builder.setMessage("Are you sure , you want to delete All record?")
+               builder.setTitle("Alert !")
+               builder.setCancelable(false)
+               builder
+                   .setPositiveButton(
+                       "Yes"
+                   ) { dialog, which ->
+
+                       GlobalScope.launch {
+                           val databaseDAO = Database?.getInstance(this@MainActivity.applicationContext).modelDAO()
+                            val model= model()
+                           databaseDAO?.deleteAll()
+                           supportFragmentManager?.beginTransaction()?.replace(R.id.fcontinor,CourceList())?.commit()
+
+                       }
+
+                       Toast.makeText(this@MainActivity,"All Record Deleted",Toast.LENGTH_SHORT).show()
+
+                   }
+
+               builder
+                   .setNegativeButton(
+                       "No",
+                       DialogInterface.OnClickListener { dialog, which ->
+
+                           dialog.cancel()
+                       })
+
+               val alertDialog = builder.create()
+
+
+               alertDialog.show()
+
+
+
 
            }
        }

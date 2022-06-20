@@ -9,8 +9,8 @@ data class model (
     @PrimaryKey(autoGenerate = true)
      var key:Int=0,
      var courseName:String?="null",
-     var totalGrades:String?="null",
-     var gradesReceived:String?="null",
+     var totalGrades:Double?=0.0,
+     var gradesReceived:Double?=0.0,
     var typeOfGrade:String?="null",
 
         ):Serializable{

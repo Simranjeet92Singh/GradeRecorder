@@ -1,11 +1,15 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="20dp"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="100dp"
     android:orientation="vertical"
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,12 +21,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Course Name:     "
+            android:text="@string/c_name"
             android:textAlignment="gravity"
             android:textSize="20dp"></TextView>
 
         <EditText
             android:id="@+id/CourseName"
+            android:lines="1"
             android:layout_width="200dp"
             android:layout_height="wrap_content"></EditText>
     </LinearLayout>
@@ -31,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="15dp"
 
         android:orientation="horizontal">
 
@@ -38,15 +44,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Grade Type:          "
+            android:text="@string/g_type"
             android:textAlignment="gravity"
             android:textSize="20dp"></TextView>
 
-        <EditText
-            android:id="@+id/gradeType"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"></EditText>
+<!--        <EditText-->
+<!--            android:id="@+id/gradeType"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="wrap_content"></EditText>-->
+
+   <Spinner
+       android:id="@+id/gradeType"
+       android:layout_marginLeft="10dp"
+       android:layout_marginTop="5dp"
+       android:layout_width="200dp"
+       android:layout_height="wrap_content"
+       android:drawSelectorOnTop="true"
+       android:entries="@array/spinnerItems"
+       >
+
+   </Spinner>
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,13 +78,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Total Grades :       "
+            android:text="@string/t_grades"
             android:textAlignment="gravity"
             android:textSize="20dp"></TextView>
 
         <EditText
             android:id="@+id/totalGrade"
             android:layout_width="200dp"
+            android:inputType="number"
+            android:lines="1"
             android:layout_height="wrap_content"></EditText>
 
     </LinearLayout>
@@ -81,13 +102,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Grades Recieved :"
+            android:text="@string/g_rec"
             android:textAlignment="gravity"
             android:textSize="20dp"></TextView>
 
         <EditText
             android:id="@+id/GradesRecieved"
             android:layout_width="200dp"
+            android:lines="1"
+            android:inputType="number"
             android:layout_height="wrap_content"></EditText>
     </LinearLayout>
 
@@ -116,3 +139,4 @@
 <!--            android:text="Back"></Button>-->
     </LinearLayout>
 </LinearLayout>
+</ScrollView>

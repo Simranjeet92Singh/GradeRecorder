@@ -2,9 +2,11 @@ package com.gradeRecorder.graderecorder
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -58,6 +60,9 @@ class CourceList : Fragment() {
         ac ?: return
         recycler=view?.findViewById(R.id.recycler)
         floatingButton=view?.findViewById<FloatingActionButton>(R.id.ac)
+        val firstText=view?.findViewById<TextView>(R.id.frontText)
+
+//        firstText.visibility=View.GONE
 
         floatingButton?.setOnClickListener{
 
@@ -82,9 +87,19 @@ class CourceList : Fragment() {
             adapter.notifyDataSetChanged()
             recycler?.adapter=adapter
 
-
+            if(model?.size==0){
+                Log.d("List size ","${model?.size}")
+//            firstText.visibility=View.VISIBLE
+                firstText.text="Hello! Welcome to Grade Recorder, Press Add button to begin."
+            }else{
+//            firstText.visibility=View.GONE
+            }
 
         }
+
+
+
+
     }
     companion object {
 

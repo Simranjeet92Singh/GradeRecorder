@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.gradeRecorder.graderecorder.recyclerview.model
 
-@Database(entities = [model::class], version = 3, exportSchema = false)
+@Database(entities = [model::class], version = 4, exportSchema = false)
 abstract class Database:RoomDatabase() {
     abstract fun modelDAO():DatabaseDAO
     companion object{

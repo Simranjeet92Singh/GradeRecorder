@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +23,7 @@ class Addcourse: Fragment() {
    private var courseName: EditText?=null
     private var totalGrades:EditText?=null
     private var obtainGrades:EditText?=null
-    private var gradeType:EditText?=null
+    private var gradeType: Spinner?=null
     private var addButton: Button?=null
 //    private var backButton:Button?=null
     private var model: model?=null
@@ -60,7 +61,7 @@ addButton?.setOnClickListener({
 
     if(courseName?.text.toString()==""){
         Toast.makeText(context,"Course Number is empty.", Toast.LENGTH_SHORT).show()
-    } else if(gradeType?.text.toString()==""){
+    } else if(gradeType?.selectedItem?.toString()=="Select Item"){
         Toast.makeText(context,"Grade Type is empty.", Toast.LENGTH_SHORT).show()
 
     }else if(totalGrades?.text.toString()==""){
@@ -70,23 +71,37 @@ addButton?.setOnClickListener({
         Toast.makeText(context,"Grades Recieved is empty.", Toast.LENGTH_SHORT).show()
 
     }else {
+        if(totalGrades?.text.toString().toDouble() >= 0.0 && totalGrades?.text.toString().toDouble()<=100.0 && obtainGrades?.text.toString().toDouble() >= 0.0 && obtainGrades?.text.toString().toDouble()<=100.0 && obtainGrades?.text.toString().toDouble()<=totalGrades?.text.toString().toDouble()){
 
-        GlobalScope.launch {
+            GlobalScope.launch {
 
-            model?.key = 0
-            model?.courseName = courseName?.text.toString()
-            model?.totalGrades = totalGrades?.text.toString()
-            model?.gradesReceived = obtainGrades?.text.toString()
-            model?.typeOfGrade = gradeType?.text.toString()
+                model?.key = 0
+                model?.courseName = courseName?.text.toString()
 
-            databaseDAO = Database?.getInstance(ac.applicationContext).modelDAO()
+                model?.totalGrades = totalGrades?.text.toString().toDouble()
+                model?.gradesReceived=obtainGrades?.text.toString().toDouble()
 
-            databaseDAO?.addData(model)
+                model?.typeOfGrade = gradeType?.selectedItem?.toString()
+
+                databaseDAO = Database?.getInstance(ac.applicationContext).modelDAO()
+
+                databaseDAO?.addData(model)
+
+            }
+
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fcontinor,CourceList())?.commit()
+            activity?.supportFragmentManager?.popBackStack()
+
+            Toast.makeText(ac.applicationContext,"Record Save",Toast.LENGTH_SHORT).show()
+
+
+        }else {
+            Toast.makeText(context,"Total Grades and Grade Recieved is between 0 and 100 Or Grade Recieved is less than Total Grades ", Toast.LENGTH_SHORT).show()
+
 
         }
 
-        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fcontinor,CourceList())?.commit()
-        activity?.supportFragmentManager?.popBackStack()
+
     }
 
 })

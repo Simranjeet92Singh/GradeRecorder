@@ -6,5 +6,11 @@
        android:title="About Us"
         app:showAsAction="never">
 
+
 </item>
+    <item android:id="@+id/deleteAll"
+        android:title="Delete All Records"
+        app:showAsAction="never">
+
+    </item>
 </menu>

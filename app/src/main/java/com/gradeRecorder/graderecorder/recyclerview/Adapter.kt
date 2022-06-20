@@ -60,6 +60,9 @@ class Adapter (val context:Context,val fragmentManager: FragmentManager?, val li
                         )?.commit()
 
                     }
+                    Toast.makeText(context.applicationContext," Record Deleted",Toast.LENGTH_SHORT).show()
+
+
                 }
 
             builder
