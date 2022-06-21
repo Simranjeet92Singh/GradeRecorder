@@ -26,6 +26,7 @@ import com.gradeRecorder.graderecorder.recyclerview.Adapter
 import com.gradeRecorder.graderecorder.recyclerview.model
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class CourceList : Fragment() {
@@ -82,13 +83,14 @@ class CourceList : Fragment() {
             databaseDAO = Database?.getInstance(ac.applicationContext).modelDAO()
             model = databaseDAO?.getAllData() as ArrayList<model>
 
-        }
+
 
 
         MainScope().launch {
-            val  adapter= Adapter(ac,fragmentManager, model!!)
-            adapter.notifyDataSetChanged()
+            val  adapter= Adapter(ac.applicationContext,fragmentManager, model!!)
+
             recycler?.adapter=adapter
+            adapter.notifyDataSetChanged()
 
             if(model?.size==0){
                 Log.d("List size ","${model?.size}")
@@ -100,7 +102,7 @@ class CourceList : Fragment() {
 
         }
 
-
+        }
 
 
     }

@@ -19,9 +19,9 @@ import com.gradeRecorder.graderecorder.recyclerview.Adapter
 import com.gradeRecorder.graderecorder.recyclerview.SummaryAdapter
 import com.gradeRecorder.graderecorder.recyclerview.SummaryModel
 import com.gradeRecorder.graderecorder.recyclerview.model
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class Summary: Fragment(){
     var summaryModel:ArrayList<SummaryModel>?=ArrayList()
@@ -59,31 +59,40 @@ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     recycler = view?.findViewById(R.id.recycler_summary)
 
 
-
+    val firstText=view?.findViewById<TextView>(R.id.textView2)
 
     recycler?.layoutManager = LinearLayoutManager(ac.applicationContext)
     recycler?.setHasFixedSize(false)
 
+
+Log.d("getCourseName",getcourseName(model!!).toString())
+
+
+
     GlobalScope.launch {
         databaseDAO = Database?.getInstance(ac.applicationContext).modelDAO()
         model = databaseDAO!!.getAllData() as ArrayList<model>
-
-    }
-Log.d("getCourseName",getcourseName(model!!).toString())
-
-    for(  j in 0..getcourseName(model!!)?.size!!-1){
+        for(  j in 0..getcourseName(model!!)?.size!!-1){
             summaryModel?.add(SummaryModel(getcourseName(model!!)?.get(j).toString(),getgradesSubmitted(model!!).get(j)
                 ,getgradestoDate(model!!).get(j)))
 
 
-            }
-
+        }
 
     MainScope().launch {
-        val adapter = SummaryAdapter(ac, summaryModel)
+        val adapter = SummaryAdapter(requireContext(), summaryModel)
 
         recycler?.adapter = adapter
+        adapter.notifyDataSetChanged()
+        if(summaryModel?.size==0){
+            Log.d("List size ","${model?.size}")
+//            firstText.visibility=View.VISIBLE
+            firstText.text="Please Add Courses first."
+        }else{
+//            firstText.visibility=View.GONE
+        }
 
+    }
     }
 }
     companion object {
@@ -111,7 +120,11 @@ Log.d("getCourseName",getcourseName(model!!).toString())
         var n : ArrayList<Double> = ArrayList()
 
 
+
         for(  j in 0..getcourseName(mlist)?.size!!-1){
+
+            var p : Double = 0.0
+            var q :Double =0.0
 
             for(i in 0..mlist.size-1){
                 if(mlist.get(i).courseName == getcourseName(mlist)?.get(j).toString()){
@@ -124,7 +137,7 @@ Log.d("getCourseName",getcourseName(model!!).toString())
                 }
 
             }
-            n.add((p/q)*100)
+            n.add(roundOffDecimal((p/q)*100))
         }
 
        return n
@@ -137,11 +150,16 @@ Log.d("getCourseName",getcourseName(model!!).toString())
                 x = x + mlist.get(i).gradesReceived!!
                 y = y + mlist.get(i).totalGrades!!
             }
-            n.add((x/y)*100)
+            n.add(roundOffDecimal((x/y)*100))
         }
 
 
         return n
+    }
+    fun roundOffDecimal(number: Double): Double{
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.FLOOR
+        return df.format(number).toDouble()
     }
 
 }

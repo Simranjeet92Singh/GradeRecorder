@@ -1,13 +1,10 @@
 package com.gradeRecorder.graderecorder.recyclerview
 
 import android.content.Context
-import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gradeRecorder.graderecorder.CourceList
 import com.gradeRecorder.graderecorder.Database.Database
@@ -44,7 +41,7 @@ class SummaryAdapter (val context: Context, val list:List<SummaryModel>?) :
 
     class ItemViewHolder(view: View): RecyclerView.ViewHolder(view){
         val tv_name: TextView?=view?.findViewById(R.id.tv_name)
-        val gradesToDate: TextView?=view?.findViewById(R.id.gradeToDate)
+        val gradesToDate: TextView?=view?.findViewById(R.id.gradeTodate)
         val gradesSubmitted: TextView?=view?.findViewById(R.id.gradesSubmitted)
 
 
