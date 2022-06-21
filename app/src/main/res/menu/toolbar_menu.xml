@@ -13,4 +13,12 @@
         app:showAsAction="never">
 
     </item>
+
+    <item android:id="@+id/summary"
+        android:title="Summary"
+        app:showAsAction="never">
+
+    </item>
+
+
 </menu>

@@ -13,5 +13,9 @@ Developed by : Vishnu </string>
     <string name="c_name">Course Name:     </string>
     <string name="g_type">Grade Type:      </string>
     <string name="t_grades">Total Grades :       </string>
-    <string name="g_rec">Grades Recieved :</string>
+    <string name="g_rec"> Grades Recieved:     </string>
+    <string name="grade_name">Grade Name</string>
+    <string name="g_submitted">Grades Submitted :</string>
+    <string name="g_to_date">Grades To Date :</string>
+    <string name="Summary">Summary</string>
 </resources>

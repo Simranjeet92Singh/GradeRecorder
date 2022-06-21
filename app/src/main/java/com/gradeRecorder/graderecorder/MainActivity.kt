@@ -100,6 +100,11 @@ class MainActivity : AppCompatActivity() {
 
 
            }
+
+           R.id.summary->{
+               supportFragmentManager.beginTransaction().replace(R.id.fcontinor, Summary.newInstance())?.addToBackStack(null)?.commit()
+
+           }
        }
         return true
     }

@@ -12,6 +12,8 @@
         <entry key="app/src/main/res/layout/fragment_course_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recycler_item_view.xml" value="0.18" />
         <entry key="app/src/main/res/layout/recycler_list_view.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/summary.xml" value="0.3020833333333333" />
+        <entry key="app/src/main/res/layout/summary_list.xml" value="0.3020833333333333" />
         <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.25" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.144" />
       </map>
